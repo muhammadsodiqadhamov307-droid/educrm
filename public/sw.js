@@ -1,5 +1,5 @@
-const CACHE_NAME = "educrm-shell-v3";
-const APP_SHELL = ["/", "/manifest.webmanifest", "/app-icon.svg", "/apple-touch-icon.svg"];
+const CACHE_NAME = "educrm-shell-v4";
+const APP_SHELL = ["/", "/manifest.webmanifest", "/app-icon.jpeg"];
 const STATIC_DESTINATIONS = new Set(["document", "script", "style", "image", "font"]);
 const EXCLUDED_PREFIXES = ["/api/", "/admin/", "/media/", "/static/admin/"];
 

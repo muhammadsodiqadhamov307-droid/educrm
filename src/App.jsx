@@ -8,20 +8,51 @@ import PageLoader from "./components/PageLoader";
 import useAuthStore from "./store/authStore";
 import { getDefaultRouteForRole, isRoleAllowed } from "./utils/navigation";
 
-const AttendancePage = lazy(() => import("./pages/Attendance"));
-const CoursesPage = lazy(() => import("./pages/Courses"));
-const DashboardPage = lazy(() => import("./pages/Dashboard"));
-const ExpensesPage = lazy(() => import("./pages/Expenses"));
-const GroupsPage = lazy(() => import("./pages/Groups"));
-const LeadsPage = lazy(() => import("./pages/Leads"));
-const LoginPage = lazy(() => import("./pages/Login"));
-const NotFoundPage = lazy(() => import("./pages/NotFound"));
-const PaymentsPage = lazy(() => import("./pages/Payments"));
-const SupportTeacherProfilePage = lazy(() => import("./pages/SupportTeachers/SupportTeacherProfile"));
-const SupportTeachersPage = lazy(() => import("./pages/SupportTeachers"));
-const SupportTasksPage = lazy(() => import("./pages/SupportTasks"));
-const StudentsPage = lazy(() => import("./pages/Students"));
-const TeachersPage = lazy(() => import("./pages/Teachers"));
+const CHUNK_ERROR_PATTERN =
+  /chunkloaderror|failed to fetch dynamically imported module|error loading dynamically imported module|importing a module script failed|module script|unexpected token '<'/i;
+
+function lazyWithRetry(importer, cacheKey) {
+  return lazy(async () => {
+    try {
+      const pageModule = await importer();
+      window.sessionStorage.removeItem(cacheKey);
+      return pageModule;
+    } catch (error) {
+      const message = String(error?.message || error || "");
+      const alreadyRetried = window.sessionStorage.getItem(cacheKey) === "true";
+
+      if (CHUNK_ERROR_PATTERN.test(message) && !alreadyRetried) {
+        window.sessionStorage.setItem(cacheKey, "true");
+        window.location.reload();
+        return new Promise(() => {});
+      }
+
+      window.sessionStorage.removeItem(cacheKey);
+      throw error;
+    }
+  });
+}
+
+const AttendancePage = lazyWithRetry(() => import("./pages/Attendance"), "lazy-retry-attendance");
+const CoursesPage = lazyWithRetry(() => import("./pages/Courses"), "lazy-retry-courses");
+const DashboardPage = lazyWithRetry(() => import("./pages/Dashboard"), "lazy-retry-dashboard");
+const ExpensesPage = lazyWithRetry(() => import("./pages/Expenses"), "lazy-retry-expenses");
+const GroupsPage = lazyWithRetry(() => import("./pages/Groups"), "lazy-retry-groups");
+const LeadsPage = lazyWithRetry(() => import("./pages/Leads"), "lazy-retry-leads");
+const LoginPage = lazyWithRetry(() => import("./pages/Login"), "lazy-retry-login");
+const NotFoundPage = lazyWithRetry(() => import("./pages/NotFound"), "lazy-retry-not-found");
+const PaymentsPage = lazyWithRetry(() => import("./pages/Payments"), "lazy-retry-payments");
+const SupportTeacherProfilePage = lazyWithRetry(
+  () => import("./pages/SupportTeachers/SupportTeacherProfile"),
+  "lazy-retry-support-teacher-profile",
+);
+const SupportTeachersPage = lazyWithRetry(
+  () => import("./pages/SupportTeachers"),
+  "lazy-retry-support-teachers",
+);
+const SupportTasksPage = lazyWithRetry(() => import("./pages/SupportTasks"), "lazy-retry-support-tasks");
+const StudentsPage = lazyWithRetry(() => import("./pages/Students"), "lazy-retry-students");
+const TeachersPage = lazyWithRetry(() => import("./pages/Teachers"), "lazy-retry-teachers");
 
 function AppLoader() {
   return <PageLoader />;

@@ -8,11 +8,11 @@ function AppLogo({ className, compact = false }) {
 
   return (
     <div className={cn("flex items-center gap-3", className)}>
-      <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-400 via-indigo-600 to-indigo-950 shadow-lg shadow-indigo-500/30 ring-1 ring-white/70">
+      <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-lg shadow-indigo-500/15 ring-1 ring-white/70">
         <img
           alt="EduCRM"
-          className="h-full w-full object-cover"
-          src="/app-icon.svg"
+          className="h-full w-full object-contain"
+          src="/app-icon.jpeg"
         />
       </div>
       {!compact ? (
