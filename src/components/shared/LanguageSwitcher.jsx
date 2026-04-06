@@ -18,7 +18,7 @@ function LanguageSwitcher({ compact = false }) {
       {languages.map((language) => (
         <button
           className={cn(
-            "rounded-xl font-semibold transition",
+            "rounded-xl font-semibold whitespace-nowrap transition",
             compact ? "px-2.5 py-1.5 text-xs" : "px-3 py-2 text-sm",
             currentLanguage === language.code
               ? "bg-brand-600 text-white"

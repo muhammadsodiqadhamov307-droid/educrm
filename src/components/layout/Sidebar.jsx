@@ -1,8 +1,9 @@
-import { ChevronLeft, PanelLeftClose, Sparkles } from "lucide-react";
+import { ChevronLeft, PanelLeftClose, Sparkles, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import Button from "../ui/Button";
+import AppLogo from "./AppLogo";
 import useAuthStore from "../../store/authStore";
 import { useUiStore } from "../../store/uiStore";
 import { cn } from "../../utils/cn";
@@ -31,26 +32,26 @@ function Sidebar() {
 
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 flex h-screen flex-col border-r border-white/70 bg-white/90 px-4 py-5 shadow-soft backdrop-blur-xl transition-transform duration-300 md:static md:translate-x-0",
+          "fixed inset-y-0 left-0 z-40 flex h-screen w-[88vw] max-w-[320px] flex-col border-r border-white/70 bg-white/95 px-3 py-4 shadow-soft backdrop-blur-xl transition-transform duration-300 md:static md:w-auto md:max-w-none md:translate-x-0 md:bg-white/90 md:px-4 md:py-5",
           isSidebarCollapsed ? "md:w-24" : "md:w-72",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <div className="flex items-center justify-between gap-3 px-2">
-          <div className={cn("flex items-center gap-3", isSidebarCollapsed && "md:justify-center")}>
-            <div className="rounded-2xl bg-brand-600 p-3 text-white shadow-lg shadow-brand-600/30">
-              <Sparkles className="h-5 w-5" />
-            </div>
-            {!isSidebarCollapsed ? (
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-600">EduCRM</p>
-                <h1 className="text-lg font-extrabold text-ink-900">{t("layout.appName")}</h1>
-              </div>
-            ) : null}
+        <div className="flex items-start justify-between gap-3 px-1 md:px-2">
+          <div className={cn("min-w-0", isSidebarCollapsed && "md:flex md:w-full md:justify-center")}>
+            {isSidebarCollapsed ? (
+              <AppLogo compact />
+            ) : (
+              <AppLogo />
+            )}
           </div>
 
-          <div className="hidden md:block">
+          <div className="flex items-center gap-2">
+            <Button className="md:hidden" onClick={closeSidebar} size="sm" variant="ghost">
+              <X className="h-4 w-4" />
+            </Button>
             <Button
+              className="hidden md:inline-flex"
               onClick={toggleSidebarCollapsed}
               size="sm"
               variant="ghost"
@@ -60,7 +61,7 @@ function Sidebar() {
           </div>
         </div>
 
-        <nav className="mt-8 flex-1 space-y-2">
+        <nav className="mt-6 flex-1 space-y-1.5">
           {visibleItems.map((item) => {
             const Icon = item.icon;
 
@@ -86,13 +87,13 @@ function Sidebar() {
           })}
         </nav>
 
-        <div className="rounded-3xl bg-ink-900 px-4 py-5 text-white">
+        <div className="rounded-3xl bg-gradient-to-br from-ink-900 via-indigo-950 to-brand-700 px-4 py-5 text-white">
           {!isSidebarCollapsed ? (
             <>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-brand-200">
                 {t("layout.welcome")}
               </p>
-              <p className="mt-2 text-sm leading-6 text-ink-200">
+              <p className="mt-2 text-sm leading-6 text-indigo-100">
                 {user?.first_name || user?.username}, {t("layout.subtitle")}
               </p>
             </>

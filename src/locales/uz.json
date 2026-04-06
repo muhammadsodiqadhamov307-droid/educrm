@@ -49,7 +49,10 @@
     "appName": "Ta'lim CRM",
     "welcome": "Ish maydoni",
     "subtitle": "kundalik boshqaruv paneli",
-    "logout": "Chiqish"
+    "logout": "Chiqish",
+    "installTitle": "EduCRM ni telefonga o'rnating",
+    "installSubtitle": "Bosh ekrandan ochsangiz, brauzer qatori ko'rinmaydi va ilova kabi ishlaydi.",
+    "installAction": "Ilovani o'rnatish"
   },
   "auth": {
     "login": "Tizimga kirish",

@@ -49,7 +49,10 @@
     "appName": "Education CRM",
     "welcome": "Workspace",
     "subtitle": "a control panel for daily operations",
-    "logout": "Logout"
+    "logout": "Logout",
+    "installTitle": "Install EduCRM on this phone",
+    "installSubtitle": "Open it from the home screen for a cleaner app view without the browser bar.",
+    "installAction": "Install app"
   },
   "auth": {
     "login": "Sign in",

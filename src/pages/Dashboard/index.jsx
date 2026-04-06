@@ -26,7 +26,7 @@ function StatCard({ color, icon: Icon, label, onClick, value }) {
   return (
     <button
       className={cn(
-        "rounded-xl bg-white p-6 text-left shadow-sm ring-1 ring-inset ring-ink-100 transition",
+        "rounded-3xl bg-white p-4 text-left shadow-sm ring-1 ring-inset ring-ink-100 transition sm:p-6",
         interactive ? "hover:-translate-y-0.5 hover:shadow-md" : "cursor-default",
       )}
       disabled={!interactive}
@@ -36,9 +36,9 @@ function StatCard({ color, icon: Icon, label, onClick, value }) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-semibold text-ink-500">{label}</p>
-          <p className="mt-4 text-3xl font-extrabold text-ink-900">{value}</p>
+          <p className="mt-3 text-2xl font-extrabold text-ink-900 sm:mt-4 sm:text-3xl">{value}</p>
         </div>
-        <div className={cn("rounded-full p-3", iconColorMap[color])}>
+        <div className={cn("rounded-2xl p-3", iconColorMap[color])}>
           <Icon className="h-5 w-5" />
         </div>
       </div>
@@ -56,7 +56,7 @@ StatCard.propTypes = {
 
 function StatCardSkeleton() {
   return (
-    <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-inset ring-ink-100">
+    <div className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-inset ring-ink-100 sm:p-6">
       <div className="flex items-start justify-between gap-4">
         <div className="space-y-4">
           <Skeleton className="rounded-lg" height={16} width={120} />
@@ -144,17 +144,21 @@ function DashboardPage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <section className="glass-panel overflow-hidden p-6 sm:p-8">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+    <div className="space-y-4 sm:space-y-6">
+      <section className="glass-panel overflow-hidden p-5 sm:p-8">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-brand-600">
               {t("dashboard.overview")}
             </p>
-            <h1 className="mt-3 text-3xl font-extrabold text-ink-900">{t("dashboard.title")}</h1>
-            <p className="mt-3 max-w-2xl text-sm leading-7 text-ink-600">{t("dashboard.subtitle")}</p>
+            <h1 className="mt-2 text-2xl font-extrabold leading-tight text-ink-900 sm:mt-3 sm:text-3xl">
+              {t("dashboard.title")}
+            </h1>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-600 sm:mt-3 sm:leading-7">
+              {t("dashboard.subtitle")}
+            </p>
           </div>
-          <Button onClick={loadStats} variant="secondary">
+          <Button className="w-full sm:w-auto" onClick={loadStats} variant="secondary">
             {t("dashboard.refresh")}
           </Button>
         </div>
@@ -174,7 +178,7 @@ function DashboardPage() {
       ) : null}
 
       {!error || loading ? (
-        <section className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <section className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3">
           {loading
             ? Array.from({ length: 6 }).map((_, index) => <StatCardSkeleton key={index} />)
             : cards.map((card) => <StatCard key={card.label} {...card} />)}

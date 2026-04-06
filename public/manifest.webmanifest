@@ -1,0 +1,30 @@
+{
+  "name": "EduCRM",
+  "short_name": "EduCRM",
+  "description": "Education center CRM for daily operations, students, payments, and attendance.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#f5f4ff",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "lang": "uz",
+  "icons": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "productivity", "business"],
+  "prefer_related_applications": false
+}
