@@ -1,0 +1,15 @@
+[Unit]
+Description=EduCRM Django Gunicorn service
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/srv/educrm
+EnvironmentFile=/srv/educrm/.env
+ExecStart=/srv/educrm/.venv/bin/gunicorn crm_backend.config.wsgi:application --bind 127.0.0.1:10234 --workers 3 --timeout 120
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

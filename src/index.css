@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Manrope", "IBM Plex Sans", ui-sans-serif, sans-serif;
+  }
+
+  body {
+    @apply min-h-screen bg-ink-50 bg-mesh-light text-ink-900 antialiased;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-brand-900;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply rounded-3xl border border-white/70 bg-white/80 shadow-soft backdrop-blur-xl;
+  }
+
+  .card-panel {
+    @apply rounded-2xl border border-ink-200 bg-white/90 shadow-sm;
+  }
+}
