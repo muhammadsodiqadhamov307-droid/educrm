@@ -12,7 +12,7 @@ function AppLogo({ className, compact = false }) {
         <img
           alt="EduCRM"
           className="h-full w-full object-contain"
-          src="/app-icon.jpeg"
+          src="/app-icon.png"
         />
       </div>
       {!compact ? (

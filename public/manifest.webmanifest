@@ -13,9 +13,15 @@
   "lang": "uz",
   "icons": [
     {
-      "src": "/app-icon.jpeg",
-      "sizes": "1024x494",
-      "type": "image/jpeg",
+      "src": "/app-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
