@@ -68,9 +68,10 @@ function InstallPrompt() {
             {t("common.close")}
           </Button>
           <Button
-            className="bg-white text-indigo-700 hover:bg-indigo-50"
+            className="!bg-white !text-indigo-700 hover:!bg-indigo-50"
             onClick={handleInstall}
             size="sm"
+            variant="secondary"
           >
             <Download className="h-4 w-4" />
             {t("layout.installAction")}
